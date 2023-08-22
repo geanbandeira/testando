@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa de Apostas</title>
+    <link rel="stylesheet" href="teste2.css">
+</head>
+<body>
+    <header>
+        <h1>Casa de Apostas</h1>
+    </header>
+    <main>
+        <section id="login-section">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" required>
+                <label for="password">Senha:</label>
+                <input type="password" id="password" required>
+                <button type="submit">Entrar</button>
+                <p id="error-message" class="error"></p>
+            </form>
+        </section>
+        <section id="user-section" style="display: none;">
+            <h2>Bem-vindo, <span id="user-display"></span>!</h2>
+            <button id="logout-button">Sair</button>
+        </section>
+    </main>
+    <script src="teste2.js"></script>
+</body>
+</html>
