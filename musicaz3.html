@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Meu Site de Música</title>
+</head>
+<body>
+    <h1>Meu Site de Música</h1>
+
+    <h2>Playlists</h2>
+    <ul id="playlists">
+        <!-- As playlists serão listadas aqui -->
+    </ul>
+
+    <h2>Favoritos</h2>
+    <ul id="favoritos">
+        <!-- As músicas favoritas serão listadas aqui -->
+    </ul>
+
+    <h2>Todas as Músicas</h2>
+    <ul id="todasMusicas">
+        <!-- Todas as músicas serão listadas aqui -->
+    </ul>
+
+    <script>
+        // Simulando uma lista de músicas
+        const musicas = [
+            { id: 1, titulo: 'Música 1', artista: 'Artista 1' },
+            { id: 2, titulo: 'Música 2', artista: 'Artista 2' },
+            { id: 3, titulo: 'Música 3', artista: 'Artista 3' },
+        ];
+
+        // Inicializar playlists e favoritos
+        const playlists = [];
+        const favoritos = [];
+
+        const playlistsElement = document.getElementById('playlists');
+        const favoritosElement = document.getElementById('favoritos');
+        const todasMusicasElement = document.getElementById('todasMusicas');
+
+        // Função para criar uma nova playlist
+        function criarPlaylist() {
+            const nomePlaylist = prompt('Nome da playlist:');
+            if (nomePlaylist) {
+                const playlist = { nome: nomePlaylist, musicas: [] };
+                playlists.push(playlist);
+                atualizarListas();
+            }
+        }
+
+        // Função para adicionar uma música a uma playlist
+        function adicionarMusicaAPlaylist(playlist, musica) {
+            playlist.musicas.push(musica);
+            atualizarListas();
+        }
+
+        // Função para adicionar ou remover uma música dos favoritos
+        function alternarFavorito(musica) {
+            if (favoritos.includes(musica)) {
+                favoritos.splice(favoritos.indexOf(musica), 1);
+            } else {
+                favoritos.push(musica);
+            }
+            atualizarListas();
+        }
+
+        // Função para atualizar as listas na página
+        function atualizarListas() {
+            playlistsElement.innerHTML = '';
+            favoritosElement.innerHTML = '';
+            todasMusicasElement.innerHTML = '';
+
+            playlists.forEach(playlist => {
+                const li = document.createElement('li');
+                li.textContent = playlist.nome;
+                playlistsElement.appendChild(li);
+
+                const ul = document.createElement('ul');
+                playlist.musicas.forEach(musica => {
+                    const musicaLi = document.createElement('li');
+                    musicaLi.textContent = `${musica.titulo} - ${musica.artista}`;
+                    ul.appendChild(musicaLi);
+                });
+                playlistsElement.appendChild(ul);
+            });
+
+            favoritos.forEach(musica => {
+                const li = document.createElement('li');
+                li.textContent = `${musica.titulo} - ${musica.artista}`;
+                favoritosElement.appendChild(li);
+            });
+
+            musicas.forEach(musica => {
+                const li = document.createElement('li');
+                li.textContent = `${musica.titulo} - ${musica.artista}`;
+                const botaoAdicionarPlaylist = document.createElement('button');
+                botaoAdicionarPlaylist.textContent = 'Adicionar à Playlist';
+                botaoAdicionarPlaylist.addEventListener('click', () => adicionarMusicaAPlaylist(playlist, musica));
+                const botaoFavorito = document.createElement('button');
+                botaoFavorito.textContent = favoritos.includes(musica) ? 'Desfavoritar' : 'Favoritar';
+                botaoFavorito.addEventListener('click', () => alternarFavorito(musica));
+
+                li.appendChild(botaoAdicionarPlaylist);
+                li.appendChild(botaoFavorito);
+                todasMusicasElement.appendChild(li);
+            });
+        }
+
+        atualizarListas();
+    </script>
+</body>
+</html>
