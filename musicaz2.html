@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minha Biblioteca Musical</title>
+</head>
+<body>
+    <h1>Minha Biblioteca Musical</h1>
+
+    <!-- Formulário para adicionar músicas -->
+    <form id="formularioMusica">
+        <label for="titulo">Título:</label>
+        <input type="text" id="titulo" required>
+        <br>
+        <label for="artista">Artista:</label>
+        <input type="text" id="artista" required>
+        <br>
+        <label for="genero">Gênero:</label>
+        <input type="text" id="genero" required>
+        <br>
+        <label for="url_reproducao">URL de Reprodução:</label>
+        <input type="text" id="url_reproducao" required>
+        <br>
+        <button type="submit">Inserir Música</button>
+    </form>
+
+    <!-- Lista de músicas -->
+    <h2>Lista de Músicas</h2>
+    <ul id="listaMusicas">
+        <!-- As músicas serão listadas aqui -->
+    </ul>
+
+    <!-- Formulário para buscar músicas por gênero -->
+    <form id="formularioBusca">
+        <label for="generoBusca">Buscar por Gênero:</label>
+        <input type="text" id="generoBusca">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Resultados da busca -->
+    <h2>Resultados da Busca</h2>
+    <ul id="resultadosBusca">
+        <!-- Os resultados da busca serão listados aqui -->
+    </ul>
+
+    <script>
+        const formularioMusica = document.getElementById('formularioMusica');
+        const titulo = document.getElementById('titulo');
+        const artista = document.getElementById('artista');
+        const genero = document.getElementById('genero');
+        const url_reproducao = document.getElementById('url_reproducao');
+        const listaMusicas = document.getElementById('listaMusicas');
+
+        const formularioBusca = document.getElementById('formularioBusca');
+        const generoBusca = document.getElementById('generoBusca');
+        const resultadosBusca = document.getElementById('resultadosBusca');
+
+        const bibliotecaMusical = [];
+
+        formularioMusica.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const musica = {
+                titulo: titulo.value,
+                artista: artista.value,
+                genero: genero.value,
+                url_reproducao: url_reproducao.value
+            };
+            bibliotecaMusical.push(musica);
+            atualizarListaMusicas();
+            formularioMusica.reset();
+        });
+
+        formularioBusca.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const generoAlvo = generoBusca.value;
+            const resultados = bibliotecaMusical.filter(musica => musica.genero === generoAlvo);
+            atualizarResultadosBusca(resultados);
+        });
+
+        function atualizarListaMusicas() {
+            listaMusicas.innerHTML = '';
+            bibliotecaMusical.forEach(musica => {
+                const li = document.createElement('li');
+                li.textContent = `${musica.titulo} - ${musica.artista}`;
+                listaMusicas.appendChild(li);
+            });
+        }
+
+        function atualizarResultadosBusca(resultados) {
+            resultadosBusca.innerHTML = '';
+            resultados.forEach(musica => {
+                const li = document.createElement('li');
+                li.textContent = `${musica.titulo} - ${musica.artista}`;
+                resultadosBusca.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
