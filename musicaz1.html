@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Site de Música</title>
+</head>
+<body>
+    <h1> MusicAZ</h1>
+    
+    <script>
+        // Array para armazenar informações sobre músicas
+const bibliotecaMusical = [];
+
+// Função para adicionar uma música à biblioteca
+function adicionarMusica(titulo, artista, album, genero, url_reproducao) {
+    const musica = {
+        titulo,
+        artista,
+        album,
+        genero,
+        url_reproducao,
+    };
+    bibliotecaMusical.push(musica);
+}
+
+// Exemplos de adição de músicas
+adicionarMusica("Música 1", "Artista 1", "Álbum 1", "Pop", "https://exemplo.com/musica1.mp3");
+adicionarMusica("Música 2", "Artista 2", "Álbum 2", "Rock", "https://exemplo.com/musica2.mp3");
+
+// Função para buscar músicas por gênero
+function buscarPorGenero(genero) {
+    return bibliotecaMusical.filter(musica => musica.genero === genero);
+}
+
+// Exemplo de busca de músicas por gênero
+const musicasPop = buscarPorGenero("Pop");
+console.log(musicasPop);
+
+    </script>
+</body>
+</html>
