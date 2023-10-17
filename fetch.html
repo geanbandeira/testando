@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplo de Fetch</title>
+</head>
+<body>
+    <div id="conteudo">
+        <!-- O conteúdo da resposta será exibido aqui -->
+    </div>
+    <button id="carregarDados">Carregar Dados</button>
+    <script>
+        document.getElementById("carregarDados").addEventListener("click", function() {
+            fetch("https://jsonplaceholder.typicode.com/posts/1")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Erro na requisição: " + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    document.getElementById("conteudo").innerHTML = "Título: " + data.title;
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+</body>
+</html>
