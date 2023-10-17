@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemplo de AJAX</title>
+</head>
+<body>
+    <div id="conteudo">
+        <!-- O conteúdo da resposta será exibido aqui -->
+    </div>
+    <button id="carregarDados">Carregar Dados</button>
+    <script>
+        document.getElementById("carregarDados").addEventListener("click", function() {
+            var xhr = new XMLHttpRequest();
+
+            // Configurar a solicitação
+            xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/1", true);
+
+            // Definir a função de callback
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var resposta = JSON.parse(xhr.responseText);
+                    document.getElementById("conteudo").innerHTML = "Título: " + resposta.title;
+                } else {
+                    console.error("Erro na requisição: " + xhr.status);
+                }
+            };
+
+            // Enviar a solicitação
+            xhr.send();
+        });
+    </script>
+</body>
+</html>
