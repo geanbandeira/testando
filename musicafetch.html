@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Site de Música</title>
+</head>
+<body>
+    <h1>Artistas Musicais</h1>
+    <ul id="artistas">
+        <!-- A lista de artistas será exibida aqui -->
+    </ul>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const artistasElement = document.getElementById("artistas");
+
+            // Função para carregar artistas usando a API Fetch
+            function carregarArtistas() {
+                fetch("https://jsonplaceholder.typicode.com/users")
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error("Erro na requisição: " + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(artistas => {
+                        artistas.forEach(artista => {
+                            const li = document.createElement("li");
+                            li.textContent = artista.name;
+                            artistasElement.appendChild(li);
+                        });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+            }
+
+            // Chame a função para carregar artistas quando a página carregar
+            carregarArtistas();
+        });
+    </script>
+</body>
+</html>
