@@ -1,0 +1,39 @@
+Essa estrutura de pastas e classes é comum em aplicações Java que seguem o padrão MVC (Model-View-Controller) e o princípio de separação de responsabilidades. Aqui vai um resumo do papel de cada elemento:
+
+1. Controller:
+Exemplo: RifaController.java
+O que faz: É a camada responsável por receber as requisições HTTP (via API REST, por exemplo), processá-las e encaminhá-las para a camada de serviço. Também envia a resposta de volta para o cliente.
+Responsabilidade:
+Gerenciar as rotas da aplicação.
+Validar as entradas básicas do usuário.
+Chamadas para os serviços.
+2. Service:
+Exemplo: RifaService.java
+O que faz: É a camada de lógica de negócios. Ela contém as regras e operações necessárias para atender as requisições processadas pelo controller.
+Responsabilidade:
+Executar validações mais complexas.
+Integrar diferentes partes do sistema.
+Controlar transações, se necessário.
+3. Repository:
+Exemplo: RifaRepository.java
+O que faz: É a camada que gerencia a interação com o banco de dados. É aqui que se realizam as operações de leitura, escrita, atualização e exclusão (CRUD).
+Responsabilidade:
+Usar bibliotecas como JPA/Hibernate para manipular entidades.
+Mapear objetos Java para tabelas no banco de dados.
+4. Model:
+Exemplo: Rifa.java
+O que faz: Representa as entidades do sistema. Geralmente é um reflexo das tabelas do banco de dados, com atributos que correspondem às colunas.
+Responsabilidade:
+Estruturar os dados usados pela aplicação.
+Contém anotações para mapeamento ORM (Object-Relational Mapping), como @Entity, @Table, etc.
+5. RifaApplication.java:
+O que faz: É a classe principal da aplicação, geralmente anotada com @SpringBootApplication (se for um projeto Spring Boot).
+Responsabilidade:
+Inicializar e configurar a aplicação.
+Rodar o servidor embutido (Tomcat, por exemplo) para que a aplicação funcione.
+Fluxo Básico:
+Um cliente faz uma requisição para a aplicação (ex.: "Criar uma rifa").
+O controller recebe a requisição e a envia para o service.
+O service processa a lógica e interage com o repository, se precisar salvar/buscar dados.
+O repository realiza as operações no banco usando o model.
+A resposta é enviada de volta, passando pelo service e retornando ao controller, que responde ao cliente.
