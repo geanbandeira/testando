@@ -1,4 +1,4 @@
-Essa estrutura de pastas e classes é comum em aplicações Java que seguem o padrão MVC (Model-View-Controller) e o princípio de separação de responsabilidades. Aqui vai um resumo do papel de cada elemento:
+Essa estrutura de pastas e classes é comum em aplicações Java que seguem o padrão MVC (Model-View-Controller) e o princípio de separação de responsabilidades
 
 1. Controller:
 Exemplo: RifaController.java
